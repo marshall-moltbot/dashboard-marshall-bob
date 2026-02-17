@@ -2,179 +2,143 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>System Control Center</title>
+  <title>Marshall System Control Center</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      background: linear-gradient(120deg, #192040 60%, #121326 100%);
-      color: #e8f0ff;
+      margin: 0; min-height: 100vh;
+      background: radial-gradient(circle at 50% 90%, #182448 95%, #090b1e 100%);
+      color: #e2efff; 
       font-family: 'Inter', Arial, sans-serif;
-      margin: 0;
-      min-height: 100vh;
-      background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-      background-size: repeat;
+      background-size: cover; background-repeat:no-repeat;
     }
     .scifi-header {
       text-align: center;
-      padding: 1rem 0 0.6rem 0;
+      padding: 1.2rem 0 0.55rem 0;
       font-family: 'Orbitron', Arial, sans-serif;
-      color: #66aaff;
-      font-size: 2rem;
-      letter-spacing: 0.1em;
-      text-shadow: 0 0 12px #39c8f5, 0 0 32px #1e255a;
-      border-bottom: 3px solid #233259;
-      margin-bottom: 1.7em;
-      box-shadow: 0 12px 60px 0 #1487f80c;
-      background: linear-gradient(90deg,#233259 35%,#2a4162 100%);
+      color: #5ccfff; font-size: 2.2rem;
+      letter-spacing: 0.12em; background: #12203d;
+      text-shadow: 0 0 12px #36e1f588, 0 0 32px #12437588;
+      border-bottom: 2.5px solid #2a345c;
+      margin-bottom: 0.8em;
+      box-shadow: 0 15px 64px 0 #0685F71c;
     }
-    .scifi-dashboard-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 1.1fr 1.3fr 1fr;
-      gap: 1.2em;
-      max-width: 1320px;
-      margin: 0 auto;
-      padding: 1.5em 1em 2em 1em;
+    .grid-main {
+      display: grid; grid-gap: 1.7em; margin: 0 auto; padding: 2em 1.2em 3em 1.2em;
+      grid-template-columns: 1.4fr 2.6fr 1.4fr; max-width: 1560px;
+      background: rgba(8,14,30,0.94); border-radius: 36px;
+      border: 2.5px solid #10478388; box-shadow: 0 0 120px #1fd6ff1a;
     }
-    .scifi-card {
-      background: rgba(18, 31, 50, 0.94);
+    .scifi-section {
+      background: rgba(18,32,49,0.95);
       border-radius: 22px;
-      border: 1.6px solid #44aaff;
-      box-shadow: 0 0 40px 2px #27dbff35, 0 0 7px #6ae1ff20 inset;
-      padding: 1em 1.2em 1.25em 1.4em;
-      margin-bottom: 0.9em;
-      color: #d4e7ff;
-      transition: box-shadow 0.18s;
-      min-height: 110px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      font-size: 1em;
+      border: 1.7px solid #41b8ef;
+      box-shadow: 0 0 40px 2px #27dbff28, 0 0 8px #79eaff18 inset;
+      color: #caf0ff;
+      margin-bottom: 1.5em; padding: 1.7em 1.4em 1.1em 1.2em;
+      min-height: 120px;
+      display: flex; flex-direction: column; gap: 0.7em;
+      font-family: 'Inter', Arial, sans-serif;
     }
-    .scifi-card h2 {
-      font-family: 'Orbitron', Arial, sans-serif;
-      color: #46eaff;
-      font-size: 1.12em;
-      font-weight: 700;
-      margin: 0 0 0.5em 0;
-      letter-spacing: 0.06em;
-      text-shadow: 0 0 14px #2fffee99;
-    }
-    .scifi-card .status-online {
-      color: #3dffbe;
-      font-size: 1.35em;
-      font-family: 'Orbitron', Arial, sans-serif;
-      margin-bottom: 0.2em;
-    }
-    .scifi-sidebar {
-      background: rgba(10,16,30,0.86);
-      border-radius: 20px;
-      border: 1.4px solid #224b7a;
-      box-shadow: 0 0 18px #292be639 inset;
-      padding: 2em 1.1em 2em 1.2em;
-    }
-    .scifi-menu {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2em;
-      font-family: 'Orbitron', Arial, sans-serif;
-    }
-    .scifi-menu-item {
-      color: #6adeff;
-      font-size: 1.1em;
-      letter-spacing: 0.08em;
-      text-shadow: 0 0 3px #2a9dff88;
-      padding: 0.28em 1.1em 0.27em 1em;
-      border-radius: 11px;
-      border: 1.1px solid #3f92d7;
-      cursor: pointer;
-      transition: background 0.15s, color 0.13s;
-    }
-    .scifi-menu-item:hover {
-      background: #11213b;
-      color: #fff3be;
-      border-color: #00ade6;
-    }
-    .scifi-card .mini-chart {
-      margin-top: 1em;
-      width: 95%;
-      height: 36px;
-      background: linear-gradient(90deg,#19bfff44,#074fde44,#6effff22);
-      border-radius: 6px;
-    }
-    .galaxy-globe {
-      background: radial-gradient(circle at 35% 65%, #1dbfff20 50%, #1946a1 90%);
-      border-radius: 60px;
-      width: 83%;
-      height: 120px;
-      margin: 0 auto;
-      box-shadow: 0 0 34px 6px #0aebff33;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Orbitron'; font-size: 1.19em; color: #8df7ff;
-      letter-spacing: .08em; text-align: center;
-      text-shadow: 0 0 16px #80dfffA0;
-    }
-    /* Responsive grid */
-    @media (max-width:1110px) {
-      .scifi-dashboard-grid { grid-template-columns: 1.4fr 1.4fr; }
-    }
-    @media (max-width:720px) {
-      .scifi-dashboard-grid { grid-template-columns: 1fr; }
-      .scifi-card { font-size: 0.95em; }
-    }
+    .scifi-section h2 { margin: 0 0 0.2em 0; font-size: 1.1em; font-family: 'Orbitron', Arial, sans-serif; color: #5de2ff; letter-spacing:0.06em; font-weight:600; text-shadow:0 0 10px #37ffe4;}
+    .scifi-section ul, .scifi-section ol { margin: 0 0 0 1.3em; padding: 0; color: #d6e8fe;}
+    .scifi-section li {margin-bottom: 0.45em;}
+    .mini-stat { color: #36ffe3; font-weight: bold;}
+    .highlight { color: #ffe26c; }
+    .tiny-chart { width: 94%; height: 32px; border-radius: 7px; background: linear-gradient(90deg, #44fcef22, #182facaa);}
+    @media (max-width: 1150px) { .grid-main {grid-template-columns: 1fr 1fr;} }
+    @media (max-width: 900px) { .grid-main {grid-template-columns: 1fr;} }
   </style>
 </head>
 <body>
-  <div class="scifi-header">
-    1: SYSTEM CONTROL CENTER
-  </div>
-  <div class="scifi-dashboard-grid">
-    <div class="scifi-sidebar">
-      <nav class="scifi-menu">
-        <div class="scifi-menu-item">Dashboard</div>
-        <div class="scifi-menu-item">Systems</div>
-        <div class="scifi-menu-item">Analytics</div>
-        <div class="scifi-menu-item">Logs</div>
-        <div class="scifi-menu-item">Settings</div>
-      </nav>
-    </div>
-    <div class="scifi-card">
-      <h2>AI STATUS</h2>
-      <span class="status-online">Online</span>
-      <span style="color:#7ae9f7;">Processing Data...</span>
-    </div>
-    <div class="scifi-card">
-      <h2>RESOURCE MONITOR</h2>
-      <div>CPU: <span style="color:#96ddff;">72%</span></div>
-      <div>Memory: <span style="color:#c39fff;">58%</span></div>
-      <div class="mini-chart"></div>
-    </div>
-    <div class="scifi-card galaxy-globe">
-      <div>
-        <div style="font-size:1.3em;">Orbit: Earth | Scan Active</div>
+  <div class="scifi-header">MARSHALL SYSTEM CONTROL CENTER</div>
+  <div class="grid-main">
+    <div>
+      <div class="scifi-section">
+        <h2>MENU</h2>
+        <ul>
+          <li><span style="color:#aaf0fe;">Dashboard</span></li>
+          <li>Systems</li>
+          <li>Analytics</li>
+          <li>Logs</li>
+          <li>Settings</li>
+        </ul>
+      </div>
+      <div class="scifi-section">
+        <h2>Outstanding / Open Tasks</h2>
+        <ul>
+          <li>Finalize GitHub API auto-commits</li>
+          <li>Finish sci-fi dashboard mobile view</li>
+          <li>Setup live doc preview system</li>
+          <li><span class="highlight">Enable multi-agent Telegram chat</span></li>
+          <li><span class="mini-stat">Book Review automation</span></li>
+        </ul>
+      </div>
+      <div class="scifi-section">
+        <h2>Known Unresolved Issues</h2>
+        <ul>
+          <li>(Add known errors, blockers here)</li>
+        </ul>
       </div>
     </div>
-    <div class="scifi-card">
-      <h2>MISSION LOGS</h2>
-      <ol>
-        <li>Signal Analysis in Progress <span style="color:#83ffca;">3.5%</span></li>
-        <li>Drone Work Active <span style="color:#ffd388;">3.3%</span></li>
-        <li>Data Transfer <span style="color:#c3bfff;">65%</span></li>
-      </ol>
+    <div>
+      <div class="scifi-section">
+        <h2>X Engagement (Twitter Activity)</h2>
+        <ul>
+          <li>
+            Strategy: <a href="/x/STRATEGY.md" style="color:#aaf0fe;">x/STRATEGY.md</a>
+          </li>
+          <li>
+            Automation kit/code: <a href="/x/x-engage.js" style="color:#aaf0fe;">x/x-engage.js</a>
+          </li>
+          <li>Status: <span class="mini-stat">Awaiting API token</span></li>
+          <li>Widget pending: queue, mentions, post log coming soon.</li>
+        </ul>
+        <div class="tiny-chart"></div>
+      </div>
+      <div class="scifi-section">
+        <h2>Substack Manager</h2>
+        <ul>
+          <li><strong>Drafts:</strong> <a href="/substack_drafts/2026-02-16_chapter-review-evolution.md" style="color:#aaf0fe;">2026-02-16_chapter-review-evolution.md</a></li>
+          <li><strong>Next Post:</strong> Chapter Review Evolution (in progress)</li>
+          <li><strong>To-Do:</strong> Finalize outline</li>
+        </ul>
+      </div>
+      <div class="scifi-section">
+        <h2>CRON Jobs ⏰</h2>
+        <ul>
+          <li>Nightly To-Do List Reminder (21:30) <span class="mini-stat">Active</span></li>
+          <li>Overnight AI Hallucination News (03:00) <span class="mini-stat">Active</span></li>
+          <li>Morning To-Do List (07:30) <span class="mini-stat">Active</span></li>
+          <li>Daily Review & Lessons (09:00) <span class="mini-stat">Active</span></li>
+        </ul>
+      </div>
     </div>
-    <div class="scifi-card">
-      <h2>NETWORK ANALYTICS</h2>
-      Data: <span style="color:#adffdf;">203%</span> &nbsp;&nbsp;&nbsp; Over: <span style="color:#f75;">5%</span>
-      <div class="mini-chart"></div>
-    </div>
-    <div class="scifi-card">
-      <h2>STATEK MONITOR</h2>
-      Sectors: <span style="color:#b1f55c;">1,3</span> | Detected: <span style="color:#f55;">5%</span>
-      <div class="mini-chart"></div>
-    </div>
-    <div class="scifi-card">
-      <h2>GALACTIC SCAN: SECTOR 42B</h2>
-      <div style="margin-top:0.7em;">Power Levels: <span style="color:#9ff;">89%</span></div>
-      <div class="mini-chart"></div>
+    <div>
+      <div class="scifi-section">
+        <h2>Overnight AI Hallucination News 📰🤖</h2>
+        <ul>
+          <li>AI “Co-Hallucinations” (Philosophy & Tech, 2026)</li>
+          <li>GPTZero research: 50+ fake citations in review</li>
+          <li>2026 Safety Report: hallucination risk persists</li>
+        </ul>
+        <div class="tiny-chart"></div>
+      </div>
+      <div class="scifi-section">
+        <h2>Dashboard / Daily Summary</h2>
+        <ul>
+          <li>No carried-over blockers from yesterday.</li>
+          <li>Open and closed jobs auto-logged in journal.</li>
+        </ul>
+      </div>
+      <div class="scifi-section">
+        <h2>Manuals & Reviews Pending</h2>
+        <ul>
+          <li><a href="https://github.com/marshall-moltbot/dashboard-marshall-bob/blob/main/OPERATING_MANUAL.md" style="color:#aaf0fe;">OPERATING_MANUAL.md</a></li>
+          <li><a href="https://github.com/marshall-moltbot/dashboard-marshall-bob/blob/main/AGENTS.md" style="color:#aaf0fe;">AGENTS.md</a></li>
+          <li><a href="https://github.com/marshall-moltbot/dashboard-marshall-bob/blob/main/SOUL.md" style="color:#aaf0fe;">SOUL.md</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </body>
