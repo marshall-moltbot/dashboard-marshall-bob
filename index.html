@@ -48,7 +48,32 @@
     .tiny-chart { width: 94%; height: 32px; border-radius: 7px; background: linear-gradient(90deg, #44fcef22, #182facaa);}
     @media (max-width: 1150px) { .grid-main {grid-template-columns: 1fr 1fr;} }
     @media (max-width: 900px) { .grid-main {grid-template-columns: 1fr;} }
-  </style>
+  #markdown-modal {
+  display: none;
+  position: fixed; z-index: 9000; left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(10,16,34,0.92);
+  align-items: center; justify-content: center;
+}
+#markdown-modal.show { display: flex; }
+#markdown-modal-content {
+  background: #171e32;
+  border-radius: 18px; border: 2px solid #39d6e0;
+  max-width: 540px; width: 95vw; max-height: 85vh; overflow-y: auto;
+  color: #e8f7ff; font-size: 1.06em;
+  box-shadow: 0 0 44px #2cdcff60, 0 0 10px #2c81d0a4;
+  padding: 1.7em 2em 1.2em 2em;
+  position: relative; font-family: 'Inter', Arial, sans-serif;
+}
+#markdown-modal-content h2, #markdown-modal-content h1 {
+  font-family: 'Orbitron', Arial, sans-serif; color: #48ecff; margin-top:0;
+}
+#close-markdown-modal {
+  position: absolute; right: 0.7em; top: 0.66em; background: none; border: none;
+  color: #48ecff; font-size: 1.7em; font-weight: bold; cursor: pointer;
+  text-shadow: 0 0 8px #aff;
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
   <div class="scifi-header">MARSHALL SYSTEM CONTROL CENTER</div>
@@ -134,12 +159,31 @@
       <div class="scifi-section">
         <h2>Manuals & Reviews Pending</h2>
         <ul>
-          <li><a href="https://github.com/marshall-moltbot/dashboard-marshall-bob/blob/main/OPERATING_MANUAL.md" style="color:#aaf0fe;">OPERATING_MANUAL.md</a></li>
-          <li><a href="https://github.com/marshall-moltbot/dashboard-marshall-bob/blob/main/AGENTS.md" style="color:#aaf0fe;">AGENTS.md</a></li>
-          <li><a href="https://github.com/marshall-moltbot/dashboard-marshall-bob/blob/main/SOUL.md" style="color:#aaf0fe;">SOUL.md</a></li>
+          <li>OPERATING_MANUAL.md <button onclick="showMarkdownModal('https://raw.githubusercontent.com/marshall-moltbot/dashboard-marshall-bob/main/OPERATING_MANUAL.md')" style="margin-left:0.7em;background:#1b425f;color:#38ffd2;border-radius:7px;border:1.2px solid #39ffd7;font-family:Orbitron;font-size:0.98em;cursor:pointer;">Preview</button></li>
+          <li>AGENTS.md <button onclick="showMarkdownModal('https://raw.githubusercontent.com/marshall-moltbot/dashboard-marshall-bob/main/AGENTS.md')" style="margin-left:0.7em;background:#1b425f;color:#38ffd2;border-radius:7px;border:1.2px solid #39ffd7;font-family:Orbitron;font-size:0.98em;cursor:pointer;">Preview</button></li>
+          <li>SOUL.md <button onclick="showMarkdownModal('https://raw.githubusercontent.com/marshall-moltbot/dashboard-marshall-bob/main/SOUL.md')" style="margin-left:0.7em;background:#1b425f;color:#38ffd2;border-radius:7px;border:1.2px solid #39ffd7;font-family:Orbitron;font-size:0.98em;cursor:pointer;">Preview</button></li>
         </ul>
       </div>
     </div>
   </div>
+<div id="markdown-modal">
+  <div id="markdown-modal-content">
+    <button id="close-markdown-modal" title="Close">&times;</button>
+    <div id="markdown-preview"></div>
+  </div>
+</div>
+<script>
+function showMarkdownModal(url) {
+  document.getElementById('markdown-modal').classList.add('show');
+  document.getElementById('markdown-preview').innerHTML = '<em>Loading preview...</em>';
+  fetch(url)
+    .then(res => (res.ok ? res.text() : 'Not found/Unable to load'))
+    .then(md => document.getElementById('markdown-preview').innerHTML = marked.parse(md))
+    .catch(() => document.getElementById('markdown-preview').innerHTML = '<em>Error loading preview.</em>');
+}
+document.getElementById('close-markdown-modal').onclick = function() {
+  document.getElementById('markdown-modal').classList.remove('show');
+};
+</script>
 </body>
 </html>
