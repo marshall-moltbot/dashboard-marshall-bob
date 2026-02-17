@@ -94,93 +94,87 @@
 <body>
   <div class="scifi-header">MARSHALL SYSTEM CONTROL CENTER</div>
   <div class="grid-main">
-    <div>
-      <div class="scifi-section">
-        <h2>MENU</h2>
-        <ul>
-          <li><span style="color:#aaf0fe;">Dashboard</span></li>
-          <li>Systems</li>
-          <li>Analytics</li>
-          <li>Logs</li>
-          <li>Settings</li>
-        </ul>
-      </div>
-      <div class="scifi-section">
-        <h2>Outstanding / Open Tasks</h2>
-        <ul>
-          <li>Finalize GitHub API auto-commits</li>
-          <li>Finish sci-fi dashboard mobile view</li>
-          <li>Setup live doc preview system</li>
-          <li><span class="highlight">Enable multi-agent Telegram chat</span></li>
-          <li><span class="mini-stat">Book Review automation</span></li>
-        </ul>
-      </div>
-      <div class="scifi-section">
-        <h2>Known Unresolved Issues</h2>
-        <ul>
-          <li>(Add known errors, blockers here)</li>
-        </ul>
-      </div>
+    <div class="scifi-section">
+      <h2>MENU</h2>
+      <ul>
+        <li><span style="color:#aaf0fe;">Dashboard</span></li>
+        <li>Systems</li>
+        <li>Analytics</li>
+        <li>Logs</li>
+        <li>Settings</li>
+      </ul>
     </div>
-    <div>
-      <div class="scifi-section">
-        <h2>X Engagement (Twitter Activity)</h2>
-        <ul>
-          <li>
-            Strategy: <button onclick="showMarkdownModal('https://raw.githubusercontent.com/marshall-moltbot/dashboard-marshall-bob/main/STRATEGY.md')" style="margin-left:0.7em;background:#1b425f;color:#38ffd2;border-radius:7px;border:1.2px solid #39ffd7;font-family:Orbitron;font-size:0.98em;cursor:pointer;">Preview</button>
-          </li>
-          <li>
-            Automation kit/code: <a href="/x/x-engage.js" style="color:#aaf0fe;">x/x-engage.js</a>
-          </li>
-          <li>Status: <span class="mini-stat">Awaiting API token</span></li>
-          <li>Widget pending: queue, mentions, post log coming soon.</li>
-        </ul>
-        <div class="tiny-chart"></div>
-      </div>
-      <div class="scifi-section">
-        <h2>Substack Manager</h2>
-        <ul>
-          <li><strong>Drafts:</strong> 2026-02-16_chapter-review-evolution.md <button onclick="showMarkdownModal('https://raw.githubusercontent.com/marshall-moltbot/dashboard-marshall-bob/main/2026-02-16_chapter-review-evolution.md')" style="margin-left:0.7em;background:#1b425f;color:#38ffd2;border-radius:7px;border:1.2px solid #39ffd7;font-family:Orbitron;font-size:0.98em;cursor:pointer;">Preview</button></li>
-          <li><strong>Next Post:</strong> Chapter Review Evolution (in progress)</li>
-          <li><strong>To-Do:</strong> Finalize outline</li>
-        </ul>
-      </div>
-      <div class="scifi-section">
-        <h2>CRON Jobs ⏰</h2>
-        <ul>
-          <li>Nightly To-Do List Reminder (21:30) <span class="mini-stat">Active</span></li>
-          <li>Overnight AI Hallucination News (03:00) <span class="mini-stat">Active</span></li>
-          <li>Morning To-Do List (07:30) <span class="mini-stat">Active</span></li>
-          <li>Daily Review & Lessons (09:00) <span class="mini-stat">Active</span></li>
-        </ul>
-      </div>
+    <div class="scifi-section">
+      <h2>Outstanding / Open Tasks</h2>
+      <ul>
+        <li>Finalize GitHub API auto-commits</li>
+        <li>Finish sci-fi dashboard mobile view</li>
+        <li>Setup live doc preview system</li>
+        <li><span class="highlight">Enable multi-agent Telegram chat</span></li>
+        <li><span class="mini-stat">Book Review automation</span></li>
+      </ul>
     </div>
-    <div>
-      <div class="scifi-section">
-        <h2>Overnight AI Hallucination News 📰🤖</h2>
-        <ul>
-          <li>AI “Co-Hallucinations” (Philosophy & Tech, 2026)</li>
-<li>GPTZero research: 50+ fake citations in review</li>
-<li>2026 Safety Report: hallucination risk persists</li>
-</ul>
-<button onclick="showMarkdownModal('https://raw.githubusercontent.com/marshall-moltbot/dashboard-marshall-bob/main/hallucination-news-2026-02-17.md')" style="margin:1.1em 0 0 0.2em;background:#1b425f;color:#38ffd2;border-radius:7px;border:1.2px solid #39ffd7;font-family:Orbitron;font-size:0.98em;cursor:pointer;">Preview All</button>
-        <div class="tiny-chart"></div>
-      </div>
-      <div class="scifi-section">
-        <h2>Dashboard / Daily Summary</h2>
-        <ul>
-          <li>No carried-over blockers from yesterday.</li>
-          <li>Open and closed jobs auto-logged in journal.</li>
-        </ul>
-      </div>
-      <div class="scifi-section">
-        <h2>Manuals & Reviews Pending</h2>
-        <ul>
-          <li>OPERATING_MANUAL.md <button onclick="showMarkdownModal('https://raw.githubusercontent.com/marshall-moltbot/dashboard-marshall-bob/main/OPERATING_MANUAL.md')" style="margin-left:0.7em;background:#1b425f;color:#38ffd2;border-radius:7px;border:1.2px solid #39ffd7;font-family:Orbitron;font-size:0.98em;cursor:pointer;">Preview</button></li>
-          <li>AGENTS.md <button onclick="showMarkdownModal('https://raw.githubusercontent.com/marshall-moltbot/dashboard-marshall-bob/main/AGENTS.md')" style="margin-left:0.7em;background:#1b425f;color:#38ffd2;border-radius:7px;border:1.2px solid #39ffd7;font-family:Orbitron;font-size:0.98em;cursor:pointer;">Preview</button></li>
-          <li>SOUL.md <button onclick="showMarkdownModal('https://raw.githubusercontent.com/marshall-moltbot/dashboard-marshall-bob/main/SOUL.md')" style="margin-left:0.7em;background:#1b425f;color:#38ffd2;border-radius:7px;border:1.2px solid #39ffd7;font-family:Orbitron;font-size:0.98em;cursor:pointer;">Preview</button></li>
-        </ul>
-      </div>
+    <div class="scifi-section">
+      <h2>Known Unresolved Issues</h2>
+      <ul>
+        <li>(Add known errors, blockers here)</li>
+      </ul>
+    </div>
+    <div class="scifi-section">
+      <h2>X Engagement (Twitter Activity)</h2>
+      <ul>
+        <li>
+          Strategy: <button onclick="showMarkdownModal('https://raw.githubusercontent.com/marshall-moltbot/dashboard-marshall-bob/main/STRATEGY.md')" style="margin-left:0.7em;background:#1b425f;color:#38ffd2;border-radius:7px;border:1.2px solid #39ffd7;font-family:Orbitron;font-size:0.98em;cursor:pointer;">Preview</button>
+        </li>
+        <li>
+          Automation kit/code: <a href="/x/x-engage.js" style="color:#aaf0fe;">x/x-engage.js</a>
+        </li>
+        <li>Status: <span class="mini-stat">Awaiting API token</span></li>
+        <li>Widget pending: queue, mentions, post log coming soon.</li>
+      </ul>
+      <div class="tiny-chart"></div>
+    </div>
+    <div class="scifi-section">
+      <h2>Substack Manager</h2>
+      <ul>
+        <li><strong>Drafts:</strong> 2026-02-16_chapter-review-evolution.md <button onclick="showMarkdownModal('https://raw.githubusercontent.com/marshall-moltbot/dashboard-marshall-bob/main/2026-02-16_chapter-review-evolution.md')" style="margin-left:0.7em;background:#1b425f;color:#38ffd2;border-radius:7px;border:1.2px solid #39ffd7;font-family:Orbitron;font-size:0.98em;cursor:pointer;">Preview</button></li>
+        <li><strong>Next Post:</strong> Chapter Review Evolution (in progress)</li>
+        <li><strong>To-Do:</strong> Finalize outline</li>
+      </ul>
+    </div>
+    <div class="scifi-section">
+      <h2>CRON Jobs ⏰</h2>
+      <ul>
+        <li>Nightly To-Do List Reminder (21:30) <span class="mini-stat">Active</span></li>
+        <li>Overnight AI Hallucination News (03:00) <span class="mini-stat">Active</span></li>
+        <li>Morning To-Do List (07:30) <span class="mini-stat">Active</span></li>
+        <li>Daily Review & Lessons (09:00) <span class="mini-stat">Active</span></li>
+      </ul>
+    </div>
+    <div class="scifi-section">
+      <h2>Overnight AI Hallucination News 📰🤖</h2>
+      <ul>
+        <li>AI “Co-Hallucinations” (Philosophy & Tech, 2026)</li>
+        <li>GPTZero research: 50+ fake citations in review</li>
+        <li>2026 Safety Report: hallucination risk persists</li>
+      </ul>
+      <button onclick="showMarkdownModal('https://raw.githubusercontent.com/marshall-moltbot/dashboard-marshall-bob/main/hallucination-news-2026-02-17.md')" style="margin:1.1em 0 0 0.2em;background:#1b425f;color:#38ffd2;border-radius:7px;border:1.2px solid #39ffd7;font-family:Orbitron;font-size:0.98em;cursor:pointer;">Preview All</button>
+      <div class="tiny-chart"></div>
+    </div>
+    <div class="scifi-section">
+      <h2>Dashboard / Daily Summary</h2>
+      <ul>
+        <li>No carried-over blockers from yesterday.</li>
+        <li>Open and closed jobs auto-logged in journal.</li>
+      </ul>
+    </div>
+    <div class="scifi-section">
+      <h2>Manuals & Reviews Pending</h2>
+      <ul>
+        <li>OPERATING_MANUAL.md <button onclick="showMarkdownModal('https://raw.githubusercontent.com/marshall-moltbot/dashboard-marshall-bob/main/OPERATING_MANUAL.md')" style="margin-left:0.7em;background:#1b425f;color:#38ffd2;border-radius:7px;border:1.2px solid #39ffd7;font-family:Orbitron;font-size:0.98em;cursor:pointer;">Preview</button></li>
+        <li>AGENTS.md <button onclick="showMarkdownModal('https://raw.githubusercontent.com/marshall-moltbot/dashboard-marshall-bob/main/AGENTS.md')" style="margin-left:0.7em;background:#1b425f;color:#38ffd2;border-radius:7px;border:1.2px solid #39ffd7;font-family:Orbitron;font-size:0.98em;cursor:pointer;">Preview</button></li>
+        <li>SOUL.md <button onclick="showMarkdownModal('https://raw.githubusercontent.com/marshall-moltbot/dashboard-marshall-bob/main/SOUL.md')" style="margin-left:0.7em;background:#1b425f;color:#38ffd2;border-radius:7px;border:1.2px solid #39ffd7;font-family:Orbitron;font-size:0.98em;cursor:pointer;">Preview</button></li>
+      </ul>
     </div>
   </div>
 <div id="markdown-modal">
