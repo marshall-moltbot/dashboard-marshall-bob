@@ -90,6 +90,50 @@
       .section { padding: 1em; }
       h1 { font-size: 1.2em; }
     }
+  /* DARK MODE PATCH BY BOB */
+  body.dark-mode {
+    background: linear-gradient(115deg, #23272f 0%, #111317 100%) !important;
+    color: #f5f6fa !important;
+  }
+  body.dark-mode .dashboard-wrapper {
+    background: #181a20 !important;
+    border-color: #333846 !important;
+    color: #f5f6fa !important;
+    box-shadow: 0 8px 32px 0 rgba(20,32,48,0.30);
+  }
+  body.dark-mode h1,
+  body.dark-mode h2,
+  body.dark-mode .section h2 {
+    color: #cbd7ed !important;
+  }
+  body.dark-mode .section {
+    background: #21242d !important;
+    color: #e0e4eb !important;
+    box-shadow: 0 2px 24px 0 rgba(20,32,48,0.10);
+  }
+  body.dark-mode .update-btn,
+  body.dark-mode .toggle-mode-btn {
+    background: linear-gradient(90deg, #16213c 60%, #596782 100%) !important;
+    color: #f5f6fa !important;
+    box-shadow: 0 3px 13px 0 rgba(30,48,80,0.13);
+  }
+  .toggle-mode-btn {
+    margin-left: 1em;
+    padding: 0.5em 1.2em;
+    border-radius: 12px;
+    border: none;
+    font-size: 0.98em;
+    font-weight: 500;
+    background: linear-gradient(90deg, #bbdefb 60%, #365678 100%);
+    color: #273149;
+    box-shadow: 0 2px 7px 0 rgba(70,92,120,0.08);
+    cursor: pointer;
+    transition: background 0.18s, color 0.13s;
+  }
+  .toggle-mode-btn:hover {
+    background: linear-gradient(90deg, #b3e0ff 60%, #18314d 100%);
+    color: #fff;
+  }
   </style>
   <script>
     function triggerDashboardUpdate() {
@@ -115,12 +159,23 @@
       }
     }
     window.addEventListener('DOMContentLoaded', setFooterDate);
+  function toggleDarkMode() {
+    const isDark = document.body.classList.toggle('dark-mode');
+    localStorage.setItem('bob.dashboard.darkMode', isDark ? 'on' : 'off');
+  }
+  // Auto-load preference
+  if (localStorage.getItem('bob.dashboard.darkMode') === 'on') {
+    document.addEventListener('DOMContentLoaded', function() {
+      document.body.classList.add('dark-mode');
+    });
+  }
   </script>
 </head>
 <body>
   <div class="dashboard-wrapper">
     <div id="dashboard-date" class="dashboard-date"></div>
     <h1>Marshall Dashboard 🦉</h1>
+<button class="toggle-mode-btn" onclick="toggleDarkMode()">Toggle Dark/Light Mode</button>
     <button class="update-btn" onclick="triggerDashboardUpdate()">Update Dashboard Now</button>
     <div class="section">
       <h2>Outstanding / Open Tasks</h2>
