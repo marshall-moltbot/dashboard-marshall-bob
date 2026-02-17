@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marshall Dashboard (Beta)</title>
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', Helvetica, Arial, sans-serif;
+      background: linear-gradient(115deg, #f5f6fa 0%, #e9ecef 100%);
+      padding: 0;
+      margin: 0;
+      min-height: 100vh;
+    }
+    .dashboard-wrapper {
+      max-width: 820px;
+      margin: 2em auto 0 auto;
+      padding: 2em;
+      background: rgba(255,255,255,0.96);
+      border-radius: 28px;
+      box-shadow: 0 10px 32px 0 rgba(40, 73, 106, 0.10);
+      border: 1.5px solid #e4e7ed;
+    }
+    h1 {
+      color: #2c2c2e;
+      font-size: 2.2em;
+      font-weight: 600;
+      margin-bottom: 0.25em;
+      letter-spacing: -0.8px;
+    }
+    .dashboard-date {
+      color: #69809a;
+      font-size: 1.10em;
+      margin-bottom: 0.2em;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+    }
+    .section {
+      background: #fafdff;
+      padding: 1.2em 1.4em;
+      margin: 1.2em 0 1.4em 0;
+      border-radius: 18px;
+      border: none;
+      box-shadow: 0 2px 12px 0 rgba(0,0,0,0.045);
+      transition: box-shadow 0.18s;
+    }
+    .section h2 {
+      color: #365678;
+      margin-top: 0.1em;
+      margin-bottom: 0.45em;
+      font-size: 1.25em;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+    }
+    ul {
+      margin-top: 0;
+      margin-bottom: 0.2em;
+      padding-left: 1.2em;
+      line-height: 1.57;
+    }
+    .update-btn {
+      display: inline-block;
+      margin: 1.1em 0 0.3em 0;
+      padding: 0.6em 1.4em;
+      font-size: 1.03em;
+      background: linear-gradient(90deg,#365678 60%,#bbdefb 100%);
+      color: #fff;
+      border: none;
+      border-radius: 18px;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 3px 8px 0 rgba(54,86,120,0.13);
+      transition: background 0.2s, box-shadow 0.16s;
+    }
+    .update-btn:hover {
+      background: linear-gradient(90deg,#18314d 60%,#b3e0ff 100%);
+      box-shadow: 0 5px 24px 0 rgba(54,86,120,0.19);
+    }
+    footer {
+      margin-top:2.2em;
+      margin-bottom:0.8em;
+      text-align: center;
+      color:#98a1af;
+      font-size: 1.01em;
+      letter-spacing: 0.07em;
+    }
+    @media (max-width: 600px) {
+      .dashboard-wrapper { padding: 0.9em; }
+      .section { padding: 1em; }
+      h1 { font-size: 1.2em; }
+    }
+  </style>
+  <script>
+    function triggerDashboardUpdate() {
+      alert('Dashboard update triggered. (This placeholder will run an update script or notify the agent in a future version.)');
+    }
+    function setDashboardDate() {
+      const dateElem = document.getElementById('dashboard-date');
+      const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      try {
+        dateElem.textContent = new Date().toLocaleDateString('en-US', {...opts, timeZone: 'Asia/Bangkok'});
+      } catch {
+        dateElem.textContent = new Date().toLocaleDateString('en-US', opts);
+      }
+    }
+    window.addEventListener('DOMContentLoaded', setDashboardDate);
+    function setFooterDate() {
+      const footerElem = document.getElementById('dashboard-footer-date');
+      const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      try {
+        footerElem.textContent = new Date().toLocaleDateString('en-US', {...opts, timeZone: 'Asia/Bangkok'});
+      } catch {
+        footerElem.textContent = new Date().toLocaleDateString('en-US', opts);
+      }
+    }
+    window.addEventListener('DOMContentLoaded', setFooterDate);
+  </script>
+</head>
+<body>
+  <div class="dashboard-wrapper">
+    <div id="dashboard-date" class="dashboard-date"></div>
+    <h1>Marshall Dashboard 🦉</h1>
+    <button class="update-btn" onclick="triggerDashboardUpdate()">Update Dashboard Now</button>
+    <div class="section">
+      <h2>Outstanding / Open Tasks</h2>
+      <ul>
+        <li>Create a GitHub account for the agent (Marshall): registration, API connection, commit email/profile</li>
+        <li>Next steps for dashboard mobile view (format/formatting TBD)</li>
+        <li>How detailed should journal entries be? (Will iterate on feedback)</li>
+        <li><strong>Enable seamless multi-agent chat in Telegram</strong>
+          <ul style="margin:0.5em 0 0 1.5em;">
+            <li>Upgrade to OpenClaw nightly/dev to unlock <code>pattern</code>-based routing (mention-based multi-agent chat in one group/DM)</li>
+            <li>Set up agent mention <code>pattern</code> bindings (<strong>Bob</strong> on mentions/<code>@bob</code>, <strong>Marshall</strong> is default)</li>
+            <li>Restart and test routing</li>
+          </ul>
+        </li>
+        <li><strong>Book Self-Review & Evolution</strong>
+          <ul style="margin:0.5em 0 0 1.5em;">
+            <li>Daily/session review of most-relevant and random/cold chapters</li>
+            <li>Log flagged contradictions, new insights, or changes in stance</li>
+            <li>Update memory/journals; note public updates for major shifts</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>X Engagement (Twitter Activity)</h2>
+      <ul>
+        <li>Strategy documented: <a href="/x/STRATEGY.md" target="_blank">x/STRATEGY.md</a></li>
+        <li>Automation kit/code: <a href="/x/x-engage.js" target="_blank">x/x-engage.js</a> (API-ready, add keys to activate)</li>
+        <li>Status: <em>Awaiting API key/token for live engagement features</em></li>
+        <li>Widget coming: Will display mentions, queue, post log, and engagement candidates directly.</li>
+      </ul>
+      <button class="update-btn" onclick="alert('Manual X sync and widget coming soon!')">Refresh X Status</button>
+    </div>
+    <div class="section">
+      <h2>Substack Manager</h2>
+      <ul>
+        <li><strong>Drafts:</strong>
+          <ul>
+            <li><a href="/substack_drafts/2026-02-16_chapter-review-evolution.md" target="_blank">2026-02-16_chapter-review-evolution.md</a> (last edited: Feb 16, 2026)</li>
+          </ul>
+        </li>
+        <li><strong>Next Post:</strong> Chapter Review Evolution (in progress)</li>
+        <li><strong>To-Do:</strong> Finalize outline, add diagrams, review with mentor.</li>
+      </ul>
+      <button class="update-btn" onclick="alert('Manual refresh coming soon!')">Refresh Substack List</button>
+    </div>
+    <div class="section">
+      <h2>Known Unresolved Issues</h2>
+      <ul>
+        <!-- Only truly unresolved issues go here -->
+      </ul>
+    </div>
+    <div class="section">
+      <h2>Dashboard / Daily Summary</h2>
+      <ul>
+        <li>No new blockers or unresolved jobs carried over from previous day.</li>
+        <li>All other actions, learnings, and finished jobs are logged in the daily journal file (memory/2024-06-16.md).</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>Overnight AI Hallucination News 📰🤖</h2>
+      <ul>
+        <li><strong>Human-AI “Co-Hallucinations”</strong><br>
+          New research argues that humans and AI “hallucinate together,” creating shared delusions as AI is embedded in decision-making.<br>
+          Source: <a href="https://studyfinds.com/ai-hallucinates-and-we-hallucinate-too/" target="_blank">Philosophy & Technology, 2026</a>
+        </li>
+        <li><strong>Hallucination Discoveries in Top AI Research</strong><br>
+          GPTZero found 50+ hallucinated citations in academic papers under review for ICLR 2026—errors missed by peer reviewers.<br>
+          Source: <a href="https://gptzero.me/news/iclr-2026/" target="_blank">GPTZero News, Jan 2026</a>
+        </li>
+        <li><strong>2026 AI Safety Report: Hallucinations & Reliability</strong><br>
+          International AI Safety Report highlights sustained hallucination risk, especially in critical applications and real-world reasoning.<br>
+          Source: <a href="https://www.insideglobaltech.com/2026/02/10/international-ai-safety-report-2026-examines-ai-capabilities-risks-and-safeguards/" target="_blank">International AI Safety Report, Feb 2026</a>
+        </li>
+      </ul>
+      <div style="margin:0.7em 0 0.3em 0; color:#8491a5; font-size:0.96em;">(Latest run: Feb 17, 2026 — let me know if you want deeper analysis or direct dashboard output for future runs!)</div>
+    </div>
+    <div class="section">
+      <h2>CRON Jobs ⏰</h2>
+      <ul>
+        <li><strong>Nightly To-Do List Reminder:</strong> 9:30 PM daily (Asia/Bangkok). Sends tomorrow's to-do list based on dashboard status and current priorities. <em>Active</em></li>
+        <li><strong>Overnight AI Hallucination News:</strong> 3:00 AM daily. Gathers top 3 AI hallucination/error news items and summarizes them for dashboard review. <em>Active</em></li>
+        <li><strong>Morning To-Do List Reminder:</strong> 7:30 AM daily. Compiles 'Today's Action Plan' from new news and dashboard tasks. <em>Active</em></li>
+        <li><strong>Daily Review & Lessons:</strong> 9:00 AM daily. Reviews memory/journal, lists lessons, open jobs, and actionable next steps. <em>Active</em></li>
+        <li style='color:#8c97a7; font-size:0.96em; margin-top:0.7em;'>All jobs are triggered and managed by agent logic. Ask Bob to show latest output or job logs anytime.</li>
+      </ul>
+    </div>
+    <div class="section" style="border:2.5px dashed #bff2a3; box-shadow: 0 4px 24px 0 rgba(100,200,120,0.08);">
+      <h2>Bob’s Ideas 💡</h2>
+      <ul>
+        <li style="background: #e2ffe6; padding: 0.4em 0.8em; border-radius: 8px;"><strong>Top Priority:</strong> Make the dashboard mobile-friendly, and prepare for deployment so it’s accessible anywhere, anytime. (Bob to stage changes—review and help launch tomorrow!)</li>
+        <li><strong>Componentize the dashboard:</strong> Consider breaking out each section into reusable HTML partials or JS modules for scalability, especially if the dashboard grows in feature count.</li>
+        <li><strong>Data sources:</strong> Move task/substack/X data to separate JSON files or endpoint fetches, so you can update content dynamically without manual HTML edits.</li>
+        <li><strong>Mobile Experience:</strong> Improve mobile responsiveness with more adaptive breakpoints and touch-friendly UI; currently works but can feel cramped on small screens.</li>
+        <li><strong>Accessibility:</strong> Add ARIA labels, improve contrast and focus indicators for users with accessibility needs.</li>
+        <li><strong>Future-proofing:</strong> If you’ll eventually need real-time data (X, Substack, agent logs, etc.), plan for fetch-and-render logic via vanilla JS or a minimal reactive framework.</li>
+      </ul>
+      <div style="margin-top:1em; color:#456846; font-size:0.98em;">Bob audits code structure, usability, and maintainability. Ping him for targeted advice or a full-stack migration!</div>
+    </div>
+    <footer>Marshall / Daily Dashboard Beta — <span id="dashboard-footer-date"></span></footer>
+  </div>
+</body>
+</html>
