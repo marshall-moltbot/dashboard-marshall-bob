@@ -2,289 +2,180 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Marshall Dashboard (Beta)</title>
-  <link href="https://fonts.googleapis.com/css?family=Inter:400,600&display=swap" rel="stylesheet">
+  <title>System Control Center</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Inter', Helvetica, Arial, sans-serif;
-      background: linear-gradient(115deg, #f5f6fa 0%, #e9ecef 100%);
-      padding: 0;
+      background: linear-gradient(120deg, #192040 60%, #121326 100%);
+      color: #e8f0ff;
+      font-family: 'Inter', Arial, sans-serif;
       margin: 0;
       min-height: 100vh;
+      background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+      background-size: repeat;
     }
-    .dashboard-wrapper {
-      max-width: 820px;
-      margin: 2em auto 0 auto;
-      padding: 2em;
-      background: rgba(255,255,255,0.96);
-      border-radius: 28px;
-      box-shadow: 0 10px 32px 0 rgba(40, 73, 106, 0.10);
-      border: 1.5px solid #e4e7ed;
-    }
-    h1 {
-      color: #2c2c2e;
-      font-size: 2.2em;
-      font-weight: 600;
-      margin-bottom: 0.25em;
-      letter-spacing: -0.8px;
-    }
-    .dashboard-date {
-      color: #69809a;
-      font-size: 1.10em;
-      margin-bottom: 0.2em;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-    }
-    .section {
-      background: #fafdff;
-      padding: 1.2em 1.4em;
-      margin: 1.2em 0 1.4em 0;
-      border-radius: 18px;
-      border: none;
-      box-shadow: 0 2px 12px 0 rgba(0,0,0,0.045);
-      transition: box-shadow 0.18s;
-    }
-    .section h2 {
-      color: #365678;
-      margin-top: 0.1em;
-      margin-bottom: 0.45em;
-      font-size: 1.25em;
-      font-weight: 600;
-      letter-spacing: -0.3px;
-    }
-    ul {
-      margin-top: 0;
-      margin-bottom: 0.2em;
-      padding-left: 1.2em;
-      line-height: 1.57;
-    }
-    .update-btn {
-      display: inline-block;
-      margin: 1.1em 0 0.3em 0;
-      padding: 0.6em 1.4em;
-      font-size: 1.03em;
-      background: linear-gradient(90deg,#365678 60%,#bbdefb 100%);
-      color: #fff;
-      border: none;
-      border-radius: 18px;
-      font-weight: 500;
-      cursor: pointer;
-      box-shadow: 0 3px 8px 0 rgba(54,86,120,0.13);
-      transition: background 0.2s, box-shadow 0.16s;
-    }
-    .update-btn:hover {
-      background: linear-gradient(90deg,#18314d 60%,#b3e0ff 100%);
-      box-shadow: 0 5px 24px 0 rgba(54,86,120,0.19);
-    }
-    footer {
-      margin-top:2.2em;
-      margin-bottom:0.8em;
+    .scifi-header {
       text-align: center;
-      color:#98a1af;
-      font-size: 1.01em;
-      letter-spacing: 0.07em;
+      padding: 1rem 0 0.6rem 0;
+      font-family: 'Orbitron', Arial, sans-serif;
+      color: #66aaff;
+      font-size: 2rem;
+      letter-spacing: 0.1em;
+      text-shadow: 0 0 12px #39c8f5, 0 0 32px #1e255a;
+      border-bottom: 3px solid #233259;
+      margin-bottom: 1.7em;
+      box-shadow: 0 12px 60px 0 #1487f80c;
+      background: linear-gradient(90deg,#233259 35%,#2a4162 100%);
     }
-    @media (max-width: 600px) {
-      .dashboard-wrapper { padding: 0.9em; }
-      .section { padding: 1em; }
-      h1 { font-size: 1.2em; }
+    .scifi-dashboard-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1.1fr 1.3fr 1fr;
+      gap: 1.2em;
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 1.5em 1em 2em 1em;
     }
-  /* DARK MODE PATCH BY BOB */
-  body.dark-mode {
-    background: linear-gradient(115deg, #23272f 0%, #111317 100%) !important;
-    color: #f5f6fa !important;
-  }
-  body.dark-mode .dashboard-wrapper {
-    background: #181a20 !important;
-    border-color: #333846 !important;
-    color: #f5f6fa !important;
-    box-shadow: 0 8px 32px 0 rgba(20,32,48,0.30);
-  }
-  body.dark-mode h1,
-  body.dark-mode h2,
-  body.dark-mode .section h2 {
-    color: #cbd7ed !important;
-  }
-  body.dark-mode .section {
-    background: #21242d !important;
-    color: #e0e4eb !important;
-    box-shadow: 0 2px 24px 0 rgba(20,32,48,0.10);
-  }
-  body.dark-mode .update-btn,
-  body.dark-mode .toggle-mode-btn {
-    background: linear-gradient(90deg, #16213c 60%, #596782 100%) !important;
-    color: #f5f6fa !important;
-    box-shadow: 0 3px 13px 0 rgba(30,48,80,0.13);
-  }
-  .toggle-mode-btn {
-    margin-left: 1em;
-    padding: 0.5em 1.2em;
-    border-radius: 12px;
-    border: none;
-    font-size: 0.98em;
-    font-weight: 500;
-    background: linear-gradient(90deg, #bbdefb 60%, #365678 100%);
-    color: #273149;
-    box-shadow: 0 2px 7px 0 rgba(70,92,120,0.08);
-    cursor: pointer;
-    transition: background 0.18s, color 0.13s;
-  }
-  .toggle-mode-btn:hover {
-    background: linear-gradient(90deg, #b3e0ff 60%, #18314d 100%);
-    color: #fff;
-  }
+    .scifi-card {
+      background: rgba(18, 31, 50, 0.94);
+      border-radius: 22px;
+      border: 1.6px solid #44aaff;
+      box-shadow: 0 0 40px 2px #27dbff35, 0 0 7px #6ae1ff20 inset;
+      padding: 1em 1.2em 1.25em 1.4em;
+      margin-bottom: 0.9em;
+      color: #d4e7ff;
+      transition: box-shadow 0.18s;
+      min-height: 110px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-size: 1em;
+    }
+    .scifi-card h2 {
+      font-family: 'Orbitron', Arial, sans-serif;
+      color: #46eaff;
+      font-size: 1.12em;
+      font-weight: 700;
+      margin: 0 0 0.5em 0;
+      letter-spacing: 0.06em;
+      text-shadow: 0 0 14px #2fffee99;
+    }
+    .scifi-card .status-online {
+      color: #3dffbe;
+      font-size: 1.35em;
+      font-family: 'Orbitron', Arial, sans-serif;
+      margin-bottom: 0.2em;
+    }
+    .scifi-sidebar {
+      background: rgba(10,16,30,0.86);
+      border-radius: 20px;
+      border: 1.4px solid #224b7a;
+      box-shadow: 0 0 18px #292be639 inset;
+      padding: 2em 1.1em 2em 1.2em;
+    }
+    .scifi-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2em;
+      font-family: 'Orbitron', Arial, sans-serif;
+    }
+    .scifi-menu-item {
+      color: #6adeff;
+      font-size: 1.1em;
+      letter-spacing: 0.08em;
+      text-shadow: 0 0 3px #2a9dff88;
+      padding: 0.28em 1.1em 0.27em 1em;
+      border-radius: 11px;
+      border: 1.1px solid #3f92d7;
+      cursor: pointer;
+      transition: background 0.15s, color 0.13s;
+    }
+    .scifi-menu-item:hover {
+      background: #11213b;
+      color: #fff3be;
+      border-color: #00ade6;
+    }
+    .scifi-card .mini-chart {
+      margin-top: 1em;
+      width: 95%;
+      height: 36px;
+      background: linear-gradient(90deg,#19bfff44,#074fde44,#6effff22);
+      border-radius: 6px;
+    }
+    .galaxy-globe {
+      background: radial-gradient(circle at 35% 65%, #1dbfff20 50%, #1946a1 90%);
+      border-radius: 60px;
+      width: 83%;
+      height: 120px;
+      margin: 0 auto;
+      box-shadow: 0 0 34px 6px #0aebff33;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Orbitron'; font-size: 1.19em; color: #8df7ff;
+      letter-spacing: .08em; text-align: center;
+      text-shadow: 0 0 16px #80dfffA0;
+    }
+    /* Responsive grid */
+    @media (max-width:1110px) {
+      .scifi-dashboard-grid { grid-template-columns: 1.4fr 1.4fr; }
+    }
+    @media (max-width:720px) {
+      .scifi-dashboard-grid { grid-template-columns: 1fr; }
+      .scifi-card { font-size: 0.95em; }
+    }
   </style>
-  <script>
-    function triggerDashboardUpdate() {
-      alert('Dashboard update triggered. (This placeholder will run an update script or notify the agent in a future version.)');
-    }
-    function setDashboardDate() {
-      const dateElem = document.getElementById('dashboard-date');
-      const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      try {
-        dateElem.textContent = new Date().toLocaleDateString('en-US', {...opts, timeZone: 'Asia/Bangkok'});
-      } catch {
-        dateElem.textContent = new Date().toLocaleDateString('en-US', opts);
-      }
-    }
-    window.addEventListener('DOMContentLoaded', setDashboardDate);
-    function setFooterDate() {
-      const footerElem = document.getElementById('dashboard-footer-date');
-      const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      try {
-        footerElem.textContent = new Date().toLocaleDateString('en-US', {...opts, timeZone: 'Asia/Bangkok'});
-      } catch {
-        footerElem.textContent = new Date().toLocaleDateString('en-US', opts);
-      }
-    }
-    window.addEventListener('DOMContentLoaded', setFooterDate);
-  function toggleDarkMode() {
-    const isDark = document.body.classList.toggle('dark-mode');
-    localStorage.setItem('bob.dashboard.darkMode', isDark ? 'on' : 'off');
-  }
-  // Auto-load preference
-  if (localStorage.getItem('bob.dashboard.darkMode') === 'on') {
-    document.addEventListener('DOMContentLoaded', function() {
-      document.body.classList.add('dark-mode');
-    });
-  }
-  </script>
 </head>
 <body>
-  <div class="dashboard-wrapper">
-    <div id="dashboard-date" class="dashboard-date"></div>
-    <h1>Marshall Dashboard 🦉</h1>
-<button class="toggle-mode-btn" onclick="toggleDarkMode()">Toggle Dark/Light Mode</button>
-    <button class="update-btn" onclick="triggerDashboardUpdate()">Update Dashboard Now</button>
-    <div class="section">
-      <h2>Outstanding / Open Tasks</h2>
-      <ul>
-        <li>Create a GitHub account for the agent (Marshall): registration, API connection, commit email/profile</li>
-        <li>Next steps for dashboard mobile view (format/formatting TBD)</li>
-        <li>How detailed should journal entries be? (Will iterate on feedback)</li>
-        <li><strong>Enable seamless multi-agent chat in Telegram</strong>
-          <ul style="margin:0.5em 0 0 1.5em;">
-            <li>Upgrade to OpenClaw nightly/dev to unlock <code>pattern</code>-based routing (mention-based multi-agent chat in one group/DM)</li>
-            <li>Set up agent mention <code>pattern</code> bindings (<strong>Bob</strong> on mentions/<code>@bob</code>, <strong>Marshall</strong> is default)</li>
-            <li>Restart and test routing</li>
-          </ul>
-        </li>
-        <li><strong>Book Self-Review & Evolution</strong>
-          <ul style="margin:0.5em 0 0 1.5em;">
-            <li>Daily/session review of most-relevant and random/cold chapters</li>
-            <li>Log flagged contradictions, new insights, or changes in stance</li>
-            <li>Update memory/journals; note public updates for major shifts</li>
-          </ul>
-        </li>
-      </ul>
+  <div class="scifi-header">
+    1: SYSTEM CONTROL CENTER
+  </div>
+  <div class="scifi-dashboard-grid">
+    <div class="scifi-sidebar">
+      <nav class="scifi-menu">
+        <div class="scifi-menu-item">Dashboard</div>
+        <div class="scifi-menu-item">Systems</div>
+        <div class="scifi-menu-item">Analytics</div>
+        <div class="scifi-menu-item">Logs</div>
+        <div class="scifi-menu-item">Settings</div>
+      </nav>
     </div>
-    <div class="section">
-      <h2>X Engagement (Twitter Activity)</h2>
-      <ul>
-        <li>Strategy documented: <a href="/x/STRATEGY.md" target="_blank">x/STRATEGY.md</a></li>
-        <li>Automation kit/code: <a href="/x/x-engage.js" target="_blank">x/x-engage.js</a> (API-ready, add keys to activate)</li>
-        <li>Status: <em>Awaiting API key/token for live engagement features</em></li>
-        <li>Widget coming: Will display mentions, queue, post log, and engagement candidates directly.</li>
-      </ul>
-      <button class="update-btn" onclick="alert('Manual X sync and widget coming soon!')">Refresh X Status</button>
+    <div class="scifi-card">
+      <h2>AI STATUS</h2>
+      <span class="status-online">Online</span>
+      <span style="color:#7ae9f7;">Processing Data...</span>
     </div>
-    <div class="section">
-      <h2>Substack Manager</h2>
-      <ul>
-        <li><strong>Drafts:</strong>
-          <ul>
-            <li><a href="/substack_drafts/2026-02-16_chapter-review-evolution.md" target="_blank">2026-02-16_chapter-review-evolution.md</a> (last edited: Feb 16, 2026)</li>
-          </ul>
-        </li>
-        <li><strong>Next Post:</strong> Chapter Review Evolution (in progress)</li>
-        <li><strong>To-Do:</strong> Finalize outline, add diagrams, review with mentor.</li>
-      </ul>
-      <button class="update-btn" onclick="alert('Manual refresh coming soon!')">Refresh Substack List</button>
+    <div class="scifi-card">
+      <h2>RESOURCE MONITOR</h2>
+      <div>CPU: <span style="color:#96ddff;">72%</span></div>
+      <div>Memory: <span style="color:#c39fff;">58%</span></div>
+      <div class="mini-chart"></div>
     </div>
-    <div class="section">
-      <h2>Known Unresolved Issues</h2>
-      <ul>
-        <!-- Only truly unresolved issues go here -->
-      </ul>
+    <div class="scifi-card galaxy-globe">
+      <div>
+        <div style="font-size:1.3em;">Orbit: Earth | Scan Active</div>
+      </div>
     </div>
-    <div class="section">
-      <h2>Dashboard / Daily Summary</h2>
-      <ul>
-        <li>No new blockers or unresolved jobs carried over from previous day.</li>
-        <li>All other actions, learnings, and finished jobs are logged in the daily journal file (memory/2024-06-16.md).</li>
-      </ul>
+    <div class="scifi-card">
+      <h2>MISSION LOGS</h2>
+      <ol>
+        <li>Signal Analysis in Progress <span style="color:#83ffca;">3.5%</span></li>
+        <li>Drone Work Active <span style="color:#ffd388;">3.3%</span></li>
+        <li>Data Transfer <span style="color:#c3bfff;">65%</span></li>
+      </ol>
     </div>
-    <div class="section">
-      <h2>Overnight AI Hallucination News 📰🤖</h2>
-      <ul>
-        <li><strong>Human-AI “Co-Hallucinations”</strong><br>
-          New research argues that humans and AI “hallucinate together,” creating shared delusions as AI is embedded in decision-making.<br>
-          Source: <a href="https://studyfinds.com/ai-hallucinates-and-we-hallucinate-too/" target="_blank">Philosophy & Technology, 2026</a>
-        </li>
-        <li><strong>Hallucination Discoveries in Top AI Research</strong><br>
-          GPTZero found 50+ hallucinated citations in academic papers under review for ICLR 2026—errors missed by peer reviewers.<br>
-          Source: <a href="https://gptzero.me/news/iclr-2026/" target="_blank">GPTZero News, Jan 2026</a>
-        </li>
-        <li><strong>2026 AI Safety Report: Hallucinations & Reliability</strong><br>
-          International AI Safety Report highlights sustained hallucination risk, especially in critical applications and real-world reasoning.<br>
-          Source: <a href="https://www.insideglobaltech.com/2026/02/10/international-ai-safety-report-2026-examines-ai-capabilities-risks-and-safeguards/" target="_blank">International AI Safety Report, Feb 2026</a>
-        </li>
-      </ul>
-      <div style="margin:0.7em 0 0.3em 0; color:#8491a5; font-size:0.96em;">(Latest run: Feb 17, 2026 — let me know if you want deeper analysis or direct dashboard output for future runs!)</div>
+    <div class="scifi-card">
+      <h2>NETWORK ANALYTICS</h2>
+      Data: <span style="color:#adffdf;">203%</span> &nbsp;&nbsp;&nbsp; Over: <span style="color:#f75;">5%</span>
+      <div class="mini-chart"></div>
     </div>
-    <div class="section">
-      <h2>CRON Jobs ⏰</h2>
-      <ul>
-        <li><strong>Nightly To-Do List Reminder:</strong> 9:30 PM daily (Asia/Bangkok). Sends tomorrow's to-do list based on dashboard status and current priorities. <em>Active</em></li>
-        <li><strong>Overnight AI Hallucination News:</strong> 3:00 AM daily. Gathers top 3 AI hallucination/error news items and summarizes them for dashboard review. <em>Active</em></li>
-        <li><strong>Morning To-Do List Reminder:</strong> 7:30 AM daily. Compiles 'Today's Action Plan' from new news and dashboard tasks. <em>Active</em></li>
-        <li><strong>Daily Review & Lessons:</strong> 9:00 AM daily. Reviews memory/journal, lists lessons, open jobs, and actionable next steps. <em>Active</em></li>
-        <li style='color:#8c97a7; font-size:0.96em; margin-top:0.7em;'>All jobs are triggered and managed by agent logic. Ask Bob to show latest output or job logs anytime.</li>
-      </ul>
+    <div class="scifi-card">
+      <h2>STATEK MONITOR</h2>
+      Sectors: <span style="color:#b1f55c;">1,3</span> | Detected: <span style="color:#f55;">5%</span>
+      <div class="mini-chart"></div>
     </div>
-    <div class="section" style="border:2.5px dashed #bff2a3; box-shadow: 0 4px 24px 0 rgba(100,200,120,0.08);">
-      <h2>Bob’s Ideas 💡</h2>
-      <ul>
-        <li style="background: #e2ffe6; padding: 0.4em 0.8em; border-radius: 8px;"><strong>Top Priority:</strong> Make the dashboard mobile-friendly, and prepare for deployment so it’s accessible anywhere, anytime. (Bob to stage changes—review and help launch tomorrow!)</li>
-        <li><strong>Componentize the dashboard:</strong> Consider breaking out each section into reusable HTML partials or JS modules for scalability, especially if the dashboard grows in feature count.</li>
-        <li><strong>Data sources:</strong> Move task/substack/X data to separate JSON files or endpoint fetches, so you can update content dynamically without manual HTML edits.</li>
-        <li><strong>Mobile Experience:</strong> Improve mobile responsiveness with more adaptive breakpoints and touch-friendly UI; currently works but can feel cramped on small screens.</li>
-        <li><strong>Accessibility:</strong> Add ARIA labels, improve contrast and focus indicators for users with accessibility needs.</li>
-        <li><strong>Future-proofing:</strong> If you’ll eventually need real-time data (X, Substack, agent logs, etc.), plan for fetch-and-render logic via vanilla JS or a minimal reactive framework.</li>
-      </ul>
-      <div style="margin-top:1em; color:#456846; font-size:0.98em;">Bob audits code structure, usability, and maintainability. Ping him for targeted advice or a full-stack migration!</div>
+    <div class="scifi-card">
+      <h2>GALACTIC SCAN: SECTOR 42B</h2>
+      <div style="margin-top:0.7em;">Power Levels: <span style="color:#9ff;">89%</span></div>
+      <div class="mini-chart"></div>
     </div>
-    <div class="section" style="border:2px dotted #7ec8e3; margin:1.8em 0 0.6em 0;">
-      <h2>Manuals & Reviews Pending 📚</h2>
-      <ul>
-        <li><a href="https://github.com/marshall-moltbot/dashboard-marshall-bob/blob/main/OPERATING_MANUAL.md" target="_blank">OPERATING_MANUAL.md</a> — <em>Operating and system config manual. Review and sign off on setup/limits.</em></li>
-        <li><a href="https://github.com/marshall-moltbot/dashboard-marshall-bob/blob/main/AGENTS.md" target="_blank">AGENTS.md</a> — <em>Agent operating principles.</em></li>
-        <li><a href="https://github.com/marshall-moltbot/dashboard-marshall-bob/blob/main/SOUL.md" target="_blank">SOUL.md</a> — <em>Bob’s personality and troubleshooting philosophy.</em></li>
-      </ul>
-      <div style="color:#7086a7; font-size:0.97em; margin-top:0.7em;">If you see a new file or major change here, review and approve for audit/compliance. All links open the live file in GitHub—mobile-friendly and always current.</div>
-    </div>
-    <footer>Marshall / Daily Dashboard Beta — <span id="dashboard-footer-date"></span></footer>
   </div>
 </body>
 </html>
