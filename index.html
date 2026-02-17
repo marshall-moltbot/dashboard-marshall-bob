@@ -47,7 +47,20 @@
     .highlight { color: #ffe26c; }
     .tiny-chart { width: 94%; height: 32px; border-radius: 7px; background: linear-gradient(90deg, #44fcef22, #182facaa);}
     @media (max-width: 1150px) { .grid-main { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 900px) { .grid-main { grid-template-columns: 1fr; } }
+@media (max-width: 900px) {
+  .grid-main {
+    grid-template-columns: 1fr !important;
+    max-width: 100vw !important;
+    padding-left: 0.2em !important;
+    padding-right: 0.2em !important;
+  }
+  .scifi-section {
+    min-width: 0 !important;
+    max-width: 100vw !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
   #markdown-modal {
   display: none;
   position: fixed; z-index: 9000; left: 0; top: 0; width: 100vw; height: 100vh;
